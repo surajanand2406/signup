@@ -1,4 +1,6 @@
 package com.registration.signup.controller;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.registration.signup.dto.User;
+import com.registration.signup.entity.UserEntity;
 import com.registration.signup.service.UserService;
 
 @RestController
@@ -26,6 +29,11 @@ public class Controller {
 	public ResponseEntity<String> registerUser(@RequestBody User usr) {
 		ResponseEntity<String> response= userService.createUser(usr);
 		return response;
+	}
+	
+	@GetMapping("/getUser")
+	public ResponseEntity<List<UserEntity>> getAllUsers() {
+		return userService.getAllUsers();
 	}
 	
 	@GetMapping("/login")

@@ -2,6 +2,7 @@ package com.registration.signup.service;
 
 import java.io.Console;
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -51,5 +52,10 @@ public class UserService {
 		}
 			return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body("User does not exist");
 		
+	}
+	
+	public ResponseEntity<List<UserEntity>> getAllUsers(){
+		List<UserEntity> res = repo.findAll();
+		return ResponseEntity.status(HttpStatus.ACCEPTED).body(res);
 	}
 }
